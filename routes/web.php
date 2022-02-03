@@ -18,7 +18,8 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    $pesan = "Begadang Lagi??";
+    return view('dashboard',compact('pesan'));
 })->name('dashboard');
 
 Route::group(['middleware'=>['auth','role:admin']],function(){
