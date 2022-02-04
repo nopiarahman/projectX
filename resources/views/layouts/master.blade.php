@@ -16,20 +16,20 @@
   <link rel="stylesheet" href="{{ asset('admin/vendors/css/vendor.bundle.base.css') }}">
   <!-- endinject -->
   <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="{{ asset('admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}"> --}}
   <link rel="stylesheet" href="{{ asset('admin/js/select.dataTables.min.css') }}">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ asset('admin/css/vertical-layout-light/style.css') }}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="images/favicon.png" />
+  <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png') }}" />
 </head>
 
-<body>
+<body style="background-color: #F4F5F7">
   <div class="container-scroller">
     <x-banner />
     <!-- navbar component -->
-    <x-navbar nama="{{ auth()->user()->name }}" greetings="Selamat Malam" pesan="{{ $pesan }}" />
+    <x-navbar nama="{{ auth()->user()->name }}" greetings="{{ greetings() }}" pesan="{{ pesan() }}" />
     <!-- partial -->
     <div class=" container-fluid page-body-wrapper">
       <!-- setting panel component -->
@@ -49,7 +49,6 @@
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-  @yield('script')
   <script src="{{ asset('admin/vendors/js/vendor.bundle.base.js') }}"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
@@ -70,6 +69,7 @@
   <script src="{{ asset('admin/js/dashboard.js') }}"></script>
   <script src="{{ asset('admin/js/Chart.roundedBarCharts.js') }}"></script>
   <!-- End custom js for this page-->
+  @yield('script')
 </body>
 
 </html>

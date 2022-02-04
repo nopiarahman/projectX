@@ -1,6 +1,6 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +18,9 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    $pesan = "Begadang Lagi??";
-    return view('dashboard',compact('pesan'));
+    return view('dashboard');
 })->name('dashboard');
 
 Route::group(['middleware'=>['auth','role:admin']],function(){
-
+    Route::get('/barang',[ BarangController::class,'index'])->name('barang');
 });
