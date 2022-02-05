@@ -30,5 +30,7 @@ function pesan(){
         return "Semoga Allah ganti lelahnya dengan pahala, Aamiin";
     }elseif($now <22){
         return "Sudah malem masih keinget aku? Maa Syaa Allah";
+    }elseif($now <=24){
+        return "Begadang gak baik untuk kesehatan loh!";
     }
 }

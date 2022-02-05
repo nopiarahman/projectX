@@ -17,8 +17,8 @@ class BarangController extends Controller
         try {
             DB::beginTransaction();
             $validasi = $this->validate($request,[
-                'sub'                     => 'required',
-                'harga'                     => 'required|integer',
+                'sub'=> 'required',
+                'harga'=> 'required|integer',
                 ]);
             
             $requestData=$request->all();
@@ -34,13 +34,14 @@ class BarangController extends Controller
             /* Penyimpanan gambar menggunakan Spatie media Library
                  cek doc di https://spatie.be/docs/laravel-medialibrary/v9/introduction */
             $barang = new Barang;
-            $barang=Barang::create($requestData);
+            $barang = Barang::create($requestData);
             if($request->hasFile('gambar')){
                 $barang
                 ->addMediaFromRequest('gambar')
                 ->withResponsiveImages()
                 ->toMediaCollection();
             }
+            $barang->save();
             DB::commit();
             return redirect()->back()->with('success','Barang Berhasil Disimpan');
         }  catch (\Exception $ex) {

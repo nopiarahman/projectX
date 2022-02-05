@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePelangganTable extends Migration
+class CreateLogistikTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreatePelangganTable extends Migration
      */
     public function up()
     {
-        Schema::create('pelanggan', function (Blueprint $table) {
+        Schema::create('logistik', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('email')->nullable();
-            $table->string('noHp')->nullable();
-            $table->string('jenis');
-            $table->string('foto')->nullable();
+            $table->string('noHp');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreatePelangganTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pelanggan');
+        Schema::dropIfExists('logistiks');
     }
 }

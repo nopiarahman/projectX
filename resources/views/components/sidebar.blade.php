@@ -35,6 +35,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="{{ url('/logistik') }}">
+          <i class="menu-icon mdi mdi-car-connected"></i>
+          <span class="menu-title">Logistik</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#pelanggan" aria-expanded="false"
           aria-controls="pelanggan">
           <i class="menu-icon mdi mdi-human-handsup"></i>
@@ -43,7 +49,7 @@
         </a>
         <div class="collapse" id="pelanggan">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="#">Reguler</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('/reguler') }}">Reguler</a></li>
             <li class="nav-item"> <a class="nav-link" href="#">Pro</a></li>
             <li class="nav-item"> <a class="nav-link" href="#">Non-Aktif</a></li>
           </ul>

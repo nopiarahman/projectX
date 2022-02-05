@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\LogistikController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +24,18 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::group(['middleware'=>['auth','role:admin']],function(){
+
+    /* Barang */
     Route::get('/barang',[ BarangController::class,'index'])->name('barang');
     Route::get('/cariJenisBarang',[ BarangController::class,'cariJenisBarang']);
     Route::post('/barang',[ BarangController::class,'store'])->name('barangSimpan');
     Route::patch('/barang/{id}',[ BarangController::class,'update']);
     Route::delete('/barang/{id}',[ BarangController::class,'destroy']);
+    /* Pelanggan */
+    Route::get('/reguler',[ PelangganController::class,'reguler'])->name('reguler');
+    /* Logistik */
+    Route::get('/logistik',[ LogistikController::class,'index'])->name('logistik');
+    Route::post('/logistik',[ LogistikController::class,'store'])->name('logistikSimpan');
+    Route::patch('/logistik/{id}',[ LogistikController::class,'update']);
+    Route::delete('/logistik/{id}',[ LogistikController::class,'destroy']);
 });
