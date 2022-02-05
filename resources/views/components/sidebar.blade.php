@@ -10,17 +10,23 @@
       {{-- Master Data --}}
       <li class="nav-item nav-category">MASTER DATA</li>
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#barang" aria-expanded="false" aria-controls="barang">
-          <i class="menu-icon mdi mdi-package-variant-closed"></i>
-          <span class="menu-title">Barang</span>
+        <a class="nav-link" data-bs-toggle="collapse" href="#order" aria-expanded="false" aria-controls="order">
+          <i class="menu-icon mdi mdi-human-greeting"></i>
+          <span class="menu-title">Order</span>
           <i class="menu-arrow"></i>
         </a>
-        <div class="collapse" id="barang">
+        <div class="collapse" id="order">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ url('/barang') }}">Daftar</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">Selesai</a></li>
             <li class="nav-item"> <a class="nav-link" href="#">Request</a></li>
           </ul>
         </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/barang') }}">
+          <i class="menu-icon mdi mdi-package-variant-closed"></i>
+          <span class="menu-title">Barang</span>
+        </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">

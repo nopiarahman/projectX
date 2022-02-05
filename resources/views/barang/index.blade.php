@@ -3,9 +3,6 @@
   {{-- Select2 --}}
   <script src="{{ asset('admin/vendors/jquery/dist/jquery.js') }}"></script>
   <link rel="stylesheet" href="{{ asset('admin/vendors/select2/select2.min.css') }}">
-  {{-- Light Galery --}}
-  <link rel="stylesheet" href="{{ asset('admin/vendors/lightgallery/lightgallery.min.css') }}">
-  <script src="{{ asset('admin/vendors/lightgallery/lightgallery.min.js') }}"></script>
 
 @endsection
 
@@ -87,8 +84,8 @@
               </div>
             </div>
 
-            <button type="submit" class="btn btn-primary me-2">Submit</button>
-            <button class="btn btn-light">Cancel</button>
+            <button type="submit" class="btn btn-primary me-2">Simpan</button>
+            <button class="btn btn-light">Batal</button>
           </form>
         </div>
       </div>
@@ -133,10 +130,15 @@
                         <td> - </td>
                       @endif
                       <td>
-                        <button class="btn text-primary px-1"> <i class="mdi-icon mdi mdi-grease-pencil"></i>
+                        <button type="button" class="btn text-primary px-1" data-id="{{ $b->id }}"
+                          data-sub="{{ $b->sub }}" data-harga="{{ $b->harga }}" data-bs-toggle="modal"
+                          data-gambar="{{ $b->getFirstMediaUrl() }}" data-bs-target="#modalEdit"> <i
+                            class="mdi-icon mdi mdi-grease-pencil"></i>
                           Edit
                         </button>
-                        <button class="btn text-danger px-1"> <i class="fa fa-trash" aria-hidden="true"></i>
+                        <button class="btn text-danger px-1" data-bs-toggle="modal" data-bs-target="#modalHapus"
+                          data-id="{{ $b->id }}" data-sub="{{ $b->sub }}"> <i class="fa fa-trash"
+                            aria-hidden="true"></i>
                           Hapus
                         </button>
                       </td>
@@ -150,7 +152,83 @@
       </div>
     </div>
   </div>
+
+  {{-- Modal Edit --}}
+  <div class="modal fade modalEdit " id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="modalEditTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered " role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Edit Barang</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="post" id="formEdit" enctype="multipart/form-data">
+            @method('patch')
+            @csrf
+            <div class="form-group">
+              <label for="exampleInputEmail3">Sub Jenis Barang</label>
+              <input name="sub" type="text" class="form-control" id="subEdit" placeholder="Sub Jenis Barang" required>
+            </div>
+            <div class="form-group">
+              <label>Harga</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text ">Rp</span>
+                </div>
+                <input name="harga" type="text" class="form-control" aria-label="Amount (to the nearest rupiah)"
+                  required id="hargaEdit">
+              </div>
+            </div>
+            <img src="" alt="" id="gambarLama" width="200px" class="mb-2">
+            <div class="form-group">
+              <label>Ubah Gambar</label>
+              <input type="file" name="gambar" class="file-upload-default">
+              <div class="input-group col-xs-12">
+                <span class="input-group-append mr-2">
+                  <button class="file-upload-browse btn btn-primary btn-sm " type="button">Pilih Gambar</button>
+                </span>
+                <input type="text" class="form-control file-upload-info pl-2" placeholder="Upload Image">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary me-2">Edit</button>
+            <button class="btn btn-light">Cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Hapus-->
+  <div class="modal fade modalHapus" id="modalHapus" tabindex="-1" role="dialog" aria-labelledby="modalHapusTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Hapus Barang</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="post" id="formHapus">
+            @method('delete')
+            @csrf
+            <p class="modal-text"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Hapus</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
+
 @section('script')
   <script src="{{ asset('admin/js/file-upload.js') }}"></script>
   <script src="{{ asset('admin/vendors/select2/select2.min.js') }}"></script>
@@ -200,5 +278,31 @@
         select.options[i] = null;
       }
     }
+
+    $(document).ready(function() {
+      $('#modalEdit').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var id = button.data('id')
+        var sub = button.data('sub')
+        var harga = button.data('harga')
+        var gambar = button.data('gambar')
+        document.getElementById('formEdit').action = 'barang/' + id;
+        $('#subEdit').val(sub);
+        $('#hargaEdit').val(harga);
+        // $('#gambarLama').src(gambar);
+        document.getElementById("gambarLama").src = gambar;
+
+      })
+    });
+    $(document).ready(function() {
+      $('#modalHapus').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var id = button.data('id') // Extract info from data-* attributes
+        var sub = button.data('sub')
+        var modal = $(this)
+        modal.find('.modal-text').text('Hapus Barang ' + sub + ' ?')
+        document.getElementById('formHapus').action = 'barang/' + id;
+      })
+    });
   </script>
 @endsection
