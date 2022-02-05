@@ -1,9 +1,36 @@
 @extends('layouts.master')
 @section('head')
-  <script src="{{ asset('admin/js/select2.js') }}"></script>
+  {{-- Select2 --}}
+  <script src="{{ asset('admin/vendors/jquery/dist/jquery.js') }}"></script>
+  <link rel="stylesheet" href="{{ asset('admin/vendors/select2/select2.min.css') }}">
+  {{-- Light Galery --}}
+  <link rel="stylesheet" href="{{ asset('admin/vendors/lightgallery/lightgallery.min.css') }}">
+  <script src="{{ asset('admin/vendors/lightgallery/lightgallery.min.js') }}"></script>
+
 @endsection
 
 @section('content')
+  {{-- Alert --}}
+  <div class="row">
+    <div class="col-12">
+      @if (session('success'))
+        <div class="alert alert-success alert-dismissible show fade" role="alert">
+          <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          {{ session('success') }}
+        </div>
+      @endif
+      @if (session('error'))
+        <div class="alert alert-warning alert-dismissible show fade" role="alert">
+          <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          {{ session('error') }}
+        </div>
+      @endif
+    </div>
+  </div>
   <div class="row">
     <div class="col-12 grid-margin stretch-card">
       <div class="card">
@@ -12,27 +39,51 @@
           <p class="card-description">
             {{-- Basic form elements --}}
           </p>
-          <form class="forms-sample">
+          <form class="forms-sample" action="{{ route('barangSimpan') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="form-group">
-              <label for="exampleInputName1">Jenis Barang</label>
-              <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+              <label>Jenis Barang</label>
+              {{-- <input type="text" name="jenis" class=" jenisBarang"> --}}
+              <div class="input-group col-xs-12">
+                <select name="jenisLama" id="jenis" class="form-control cariJenis">
+                </select>
+                <span class="input-group-append">
+                  <span class="mx-4">atau</span>
+                  <a class="file-upload-browse btn btn-primary" type=" button" onclick="showJenisBaru()">Jenis Barang
+                    Baru</a>
+                </span>
+              </div>
+            </div>
+
+            <div class="form-group jenisBaru d-none">
+              <label for="exampleInputEmail3">Jenis barang Baru</label>
+              <input name="jenisBaru" type="text" class="form-control " id="exampleInputEmail3"
+                placeholder="Jenis Barang Baru" onchange="removeJenis()">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputEmail3">Sub Jenis Barang</label>
+              <input name="sub" type="text" class="form-control" id="exampleInputEmail3" placeholder="Sub Jenis Barang"
+                required>
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail3">Sub Barang</label>
-              <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword4">Harga</label>
-              <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
+              <label>Harga</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text ">Rp</span>
+                </div>
+                <input name="harga" type="text" class="form-control" aria-label="Amount (to the nearest rupiah)"
+                  required>
+              </div>
             </div>
             <div class="form-group">
               <label>Gambar</label>
-              <input type="file" name="img[]" class="file-upload-default">
+              <input type="file" name="gambar" class="file-upload-default">
               <div class="input-group col-xs-12">
-                <input type="text" class="form-control file-upload-info" placeholder="Upload Image">
-                <span class="input-group-append">
-                  <button class="file-upload-browse btn btn-primary" type="button">Pilih Gambar</button>
+                <span class="input-group-append mr-2">
+                  <button class="file-upload-browse btn btn-primary btn-sm " type="button">Pilih Gambar</button>
                 </span>
+                <input type="text" class="form-control file-upload-info pl-2" placeholder="Upload Image">
               </div>
             </div>
 
@@ -51,7 +102,7 @@
             {{-- Add class <code>.table-striped</code> --}}
           </p>
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-hover">
               <thead>
                 <tr>
                   <th> No</th>
@@ -62,16 +113,35 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($barang as $b)
+                @php
+                  $perJenis = $barang;
+                @endphp
+                @foreach ($perJenis as $jenis => $barang)
                   <tr>
-                    <td class="py-1">
-                      {{ $loop->iteration }}
-                    </td>
-                    <td> {{ $b->sub }} </td>
-                    <td> {{ $b->harga }} </td>
-                    <td> gambar </td>
-                    <td> Aksi </td>
+                    <th colspan="5">{{ $jenis }}</th>
                   </tr>
+                  @foreach ($barang as $b)
+                    <tr>
+                      <td class="py-1">
+                        {{ $loop->iteration }}
+                      </td>
+                      <td> {{ $b->sub }} </td>
+                      <td> {{ $b->harga }} </td>
+                      @if ($b->gambar)
+                        <td>{{ $b->getFirstMedia() }}</td>
+                      @else
+                        <td> - </td>
+                      @endif
+                      <td>
+                        <button class="btn text-primary px-1"> <i class="mdi-icon mdi mdi-grease-pencil"></i>
+                          Edit
+                        </button>
+                        <button class="btn text-danger px-1"> <i class="fa fa-trash" aria-hidden="true"></i>
+                          Hapus
+                        </button>
+                      </td>
+                    </tr>
+                  @endforeach
                 @endforeach
               </tbody>
             </table>
@@ -83,5 +153,52 @@
 @endsection
 @section('script')
   <script src="{{ asset('admin/js/file-upload.js') }}"></script>
-  {{-- <script src="{{ asset('admin/js/typeahead.js') }}"></script> --}}
+  <script src="{{ asset('admin/vendors/select2/select2.min.js') }}"></script>
+  <script type="text/javascript">
+    $('.cariJenis').select2({
+      placeholder: 'Cari Jenis Barang...',
+      ajax: {
+        url: '/cariJenisBarang',
+        dataType: 'json',
+        delay: 250,
+        processResults: function(data) {
+          return {
+            results: $.map(data, function(item) {
+              return {
+                text: item.jenis,
+                /* memasukkan text di option => <option>namaSurah</option> */
+                id: item.jenis /* memasukkan value di option => <option value=id> */
+              }
+            })
+          };
+        },
+        cache: true
+      }
+    });
+
+    function showJenisBaru() {
+      var inputBaru = document.querySelector('.jenisBaru');
+      inputBaru.className = 'form-group jenisBaru';
+    }
+    document.getElementById("jenis").onchange = changeListener;
+
+    function changeListener() {
+      var value = this.value
+      var inputBaru = document.querySelector('.jenisBaru');
+      console.log(value);
+      if (value == "input") {
+        inputBaru.className = 'form-group jenisBaru';
+      } else {
+        inputBaru.className = 'form-group jenisBaru d-none';
+      }
+    }
+
+    function removeJenis() {
+      var select = document.getElementById("jenis");
+      var length = select.options.length;
+      for (i = length - 1; i >= 0; i--) {
+        select.options[i] = null;
+      }
+    }
+  </script>
 @endsection

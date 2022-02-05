@@ -23,4 +23,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::group(['middleware'=>['auth','role:admin']],function(){
     Route::get('/barang',[ BarangController::class,'index'])->name('barang');
+    Route::get('/cariJenisBarang',[ BarangController::class,'cariJenisBarang']);
+    Route::post('/barang',[ BarangController::class,'store'])->name('barangSimpan');
 });
