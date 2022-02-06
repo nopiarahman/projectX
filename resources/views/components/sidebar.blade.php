@@ -17,8 +17,8 @@
         </a>
         <div class="collapse" id="order">
           <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="#">On-Going</a></li>
             <li class="nav-item"> <a class="nav-link" href="#">Selesai</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Request</a></li>
           </ul>
         </div>
       </li>
@@ -64,6 +64,20 @@
       {{-- Keuangan --}}
       <li class="nav-item nav-category">KEUANGAN</li>
       <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#penjualan" aria-expanded="false"
+          aria-controls="penjualan">
+          <i class="menu-icon mdi mdi-square-inc-cash"></i>
+          <span class="menu-title">Penjualan</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="penjualan">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="#">Menunggu Konfirmasi</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">Selesai</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#saldo" aria-expanded="false" aria-controls="saldo">
           <i class="menu-icon mdi mdi-cash-multiple"></i>
           <span class="menu-title">Saldo Pelanggan</span>
@@ -73,6 +87,7 @@
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="#">Ready</a></li>
             <li class="nav-item"> <a class="nav-link" href="#">Pending</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">Daftar</a></li>
           </ul>
         </div>
       </li>

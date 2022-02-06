@@ -3,8 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
-class CreateLogistikTable extends Migration
+use App\Models\Pelanggan;
+class CreateSaldoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateLogistikTable extends Migration
      */
     public function up()
     {
-        Schema::create('logistik', function (Blueprint $table) {
+        Schema::create('saldo', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('noHp');
-            $table->string('status');
+            $table->foreignIdFor(Pelanggan::class);
+            $table->datetime('tanggal');
+            $table->string('uraian');
+            $table->integer('kredit')->nullable();
+            $table->integer('debit')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateLogistikTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('logistik');
+        Schema::dropIfExists('saldo');
     }
 }

@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
-class CreateLogistikTable extends Migration
+use App\Models\Pelanggan;
+use App\Models\Logistik;
+class CreateOrderTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +14,12 @@ class CreateLogistikTable extends Migration
      */
     public function up()
     {
-        Schema::create('logistik', function (Blueprint $table) {
+        Schema::create('order', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('noHp');
-            $table->string('status');
+            $table->foreignIdFor(Pelanggan::class);
+            $table->foreignIdFor(Logistik::class)->nullable();
+            $table->datetime('tanggal');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateLogistikTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('logistik');
+        Schema::dropIfExists('order');
     }
 }

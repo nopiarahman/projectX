@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PelangganSeeder::class,
             BarangSeeder::class,
-            LogistikSeeder::class
+            LogistikSeeder::class,
+            PengepulSeeder::class
         ]);
     }
 }

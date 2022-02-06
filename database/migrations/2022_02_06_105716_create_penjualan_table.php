@@ -3,8 +3,10 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Logistik;
+use App\Models\Pengepul;
 
-class CreateLogistikTable extends Migration
+class CreatePenjualanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +15,12 @@ class CreateLogistikTable extends Migration
      */
     public function up()
     {
-        Schema::create('logistik', function (Blueprint $table) {
+        Schema::create('penjualan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('noHp');
-            $table->string('status');
+            $table->datetime('tanggal');
+            $table->foreignIdFor(Pengepul::class);
+            $table->foreignIdFor(Logistik::class);
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateLogistikTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('logistik');
+        Schema::dropIfExists('penjualan');
     }
 }
