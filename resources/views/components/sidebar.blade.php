@@ -56,7 +56,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ url('pengepul') }}">
           <i class="menu-icon mdi mdi-houzz"></i>
           <span class="menu-title">Pengepul</span>
         </a>

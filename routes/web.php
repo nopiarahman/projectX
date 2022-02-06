@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\LogistikController;
+use App\Http\Controllers\PengepulController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +39,9 @@ Route::group(['middleware'=>['auth','role:admin']],function(){
     Route::post('/logistik',[ LogistikController::class,'store'])->name('logistikSimpan');
     Route::patch('/logistik/{id}',[ LogistikController::class,'update']);
     Route::delete('/logistik/{id}',[ LogistikController::class,'destroy']);
+    /* Pengepul */
+    Route::get('/pengepul',[ PengepulController::class,'index'])->name('pengepul');
+    Route::post('/pengepul',[ PengepulController::class,'store'])->name('pengepulSimpan');
+    Route::patch('/pengepul/{id}',[ PengepulController::class,'update']);
+    Route::delete('/pengepul/{id}',[ PengepulController::class,'destroy']);
 });
