@@ -24,7 +24,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::group(['middleware'=>['auth','role:admin']],function(){
+Route::group(['middleware'=>['role:Super-Admin']],function(){
 
     /* Barang */
     Route::get('/barang',[ BarangController::class,'index'])->name('barang');
@@ -44,4 +44,12 @@ Route::group(['middleware'=>['auth','role:admin']],function(){
     Route::post('/pengepul',[ PengepulController::class,'store'])->name('pengepulSimpan');
     Route::patch('/pengepul/{id}',[ PengepulController::class,'update']);
     Route::delete('/pengepul/{id}',[ PengepulController::class,'destroy']);
+});
+Route::group(['middleware'=>['role:logistik']],function(){
+
+    /* Logistik */
+    Route::get('/logistik',[ LogistikController::class,'index'])->name('logistik');
+    Route::post('/logistik',[ LogistikController::class,'store'])->name('logistikSimpan');
+    Route::patch('/logistik/{id}',[ LogistikController::class,'update']);
+    Route::delete('/logistik/{id}',[ LogistikController::class,'destroy']);
 });

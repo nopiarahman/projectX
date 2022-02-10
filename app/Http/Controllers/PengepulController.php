@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Pengepul;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PengepulController extends Controller
@@ -11,6 +11,7 @@ class PengepulController extends Controller
     public function index()
     {
         $pengepul=Pengepul::all();
+        
         return view('pengepul.index',compact('pengepul'));
     }
     public function store(Request $request){
