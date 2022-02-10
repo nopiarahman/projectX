@@ -115,14 +115,14 @@
                 @endphp
                 @foreach ($perJenis as $jenis => $barang)
                   <tr>
-                    <th colspan="5">{{ $jenis }}</th>
+                    <th colspan="5">Jenis Barang {{ $jenis }}</th>
                   </tr>
                   @foreach ($barang as $b)
                     <tr>
                       <td class="py-1">
                         {{ $loop->iteration }}
                       </td>
-                      <td> {{ $b->sub }} </td>
+                      <td>{{ $b->jenis }} {{ $b->sub }} </td>
                       <td> {{ $b->harga }} </td>
                       @if ($b->gambar)
                         <td>{{ $b->getFirstMedia() }}</td>
