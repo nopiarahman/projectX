@@ -64,7 +64,7 @@
         </a>
       </li>
       {{-- Keuangan --}}
-      @role('keuangan')
+      @role('keuangan|Super-Admin')
         <li class="nav-item nav-category">KEUANGAN</li>
         <li class="nav-item">
           <a class="nav-link" data-bs-toggle="collapse" href="#penjualan" aria-expanded="false"
@@ -167,13 +167,15 @@
         </a>
       </li>
       {{-- Developer --}}
-      <li class="nav-item nav-category">Developer</li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('/tinker') }}" target="_blank">
-          <i class="menu-icon mdi mdi-account-key"></i>
-          <span class="menu-title">Tinker</span>
-        </a>
-      </li>
+      @role('developer|Super-Admin')
+        <li class="nav-item nav-category">Developer</li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url('/tinker') }}" target="_blank">
+            <i class="menu-icon mdi mdi-account-key"></i>
+            <span class="menu-title">Tinker</span>
+          </a>
+        </li>
+      @endrole
       {{-- Bantuan --}}
       <li class="nav-item nav-category">Bantuan</li>
       <li class="nav-item">

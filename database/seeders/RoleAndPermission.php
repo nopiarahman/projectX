@@ -25,10 +25,12 @@ class RoleAndPermission extends Seeder
         Permission::updateOrCreate(['name' => 'lihat transaksiMasuk']);
         Permission::updateOrCreate(['name' => 'lihat kas']);
         Permission::updateOrCreate(['name' => 'lihat logistik']);
+        Permission::updateOrCreate(['name' => 'lihat user']);
         // updateOrCreate roles and assign existing permissions
         $superAdmin = Role::updateOrCreate(['name' => 'Super-Admin']);
         $keuangan = Role::updateOrCreate(['name' => 'keuangan']);
         $logistik = Role::updateOrCreate(['name' => 'logistik']);
+        $developer = Role::updateOrCreate(['name' => 'developer']);
 
         /* Assign Permission */
         $superAdmin->syncPermissions(Permission::all());

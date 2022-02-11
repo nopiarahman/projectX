@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Saldo extends Model
 {
     use HasFactory;
+    protected $table = "saldo";
+    protected $guarded = ['id','created_at','updated_at'];
 }
