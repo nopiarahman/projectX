@@ -1,19 +1,5 @@
 <?php
 use Carbon\Carbon;
-function greetings(){
-    $now = Carbon::now()->hour;
-    if($now <4){
-        return "Waktunya Tidur";
-    }elseif($now <9){
-        return "Selamat Pagi";
-    }elseif($now <14){
-        return "Selamat Siang";
-    }elseif($now <17){
-        return "Selamat Sore";
-    }elseif($now <24){
-        return "Selamat Malam";
-    }
-}
 function pesan(){
     $now = Carbon::now()->hour;
     if($now <4){
@@ -31,6 +17,6 @@ function pesan(){
     }elseif($now <22){
         return "Sudah malem masih keinget aku? Maa Syaa Allah";
     }elseif($now <=24){
-        return "Begadang gak baik untuk kesehatan loh!";
+        return "Begadang gak baik untuk kesehaheltan loh!";
     }
 }
