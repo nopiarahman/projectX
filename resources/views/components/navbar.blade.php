@@ -1,17 +1,18 @@
-<div>
+<div class="mb-n2">
   <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
-    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start d-lg-flex">
       <div class="me-3">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
           <span class="icon-menu"></span>
         </button>
       </div>
       <div>
-        <a class="navbar-brand brand-logo" href="index.html">
-          <h2 class="fw-bolder">PASOK</h2>
-          {{-- <img src="{{ asset('admin/images/logo.svg') }}" alt="logo" /> --}}
+        <a class="navbar-brand brand-logo" href="/">
+          {{-- <h2 class="fw-bolder">PASOK</h2> --}}
+          <img src="{{ asset('admin/images/logo-mini.png') }}" alt="logo" />
         </a>
-        <a class="navbar-brand brand-logo-mini" href="index.html">
+        <a class="navbar-brand brand-logo-mini ms-1" href="/">
+          <img src="{{ asset('admin/images/logo-circle.png') }}" alt="logo" />
           {{-- <h2>P</h2> --}}
           {{-- <img src="{{ asset('admin/images/logo-mini.svg') }}" alt="logo" /> --}}
         </a>
@@ -28,7 +29,7 @@
           <span class="welcome-sub-text d-lg-none ms-0">{{ $pesan }}</span>
         </li>
       </ul>
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto ">
         {{-- <li class="nav-item dropdown d-none d-lg-block">
           <a class="nav-link dropdown-bordered dropdown-toggle dropdown-toggle-split" id="messageDropdown" href="#"
             data-bs-toggle="dropdown" aria-expanded="false"> Select Category </a>
@@ -206,7 +207,8 @@
           <form method="POST" action="{{ route('logout') }}">
             @csrf
 
-            <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
+            <x-jet-dropdown-link href="{{ route('logout') }}"
+              onclick="event.preventDefault();
                                               this.closest('form').submit();">
               {{ __('Log Out') }}
             </x-jet-dropdown-link>
@@ -247,7 +249,8 @@
             <form method="POST" action="{{ route('logout') }}">
               @csrf
 
-              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
                                               this.closest('form').submit();">
                 <i class="dropdown-item-icon mdi mdi-power me-2"></i> {{ __('Log Out') }}
               </a>
