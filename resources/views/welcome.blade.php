@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css  ">
   <style>
     /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
     html {
@@ -395,39 +396,36 @@
         color: rgba(107, 114, 128, var(--tw-text-opacity))
       }
     }
-
   </style>
 
   <style>
     body {
       font-family: 'Nunito', sans-serif;
     }
-
   </style>
 </head>
 
-<body class="antialiased">
-  <div
-    class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-    @if (Route::has('login'))
-      <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-        @auth
-          <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-        @else
-          <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+<body class="antialiased bg-gray-100 dark:bg-gray-900">
+  <div class="min-h-screen flex justify-center items-center" style="flex-direction: column">
+    <div>
+      <img src="{{ asset('admin/images/logo-mini.png') }}" width="300px" alt="" srcset="">
+    </div>
+    <div>
+      @if (Route::has('login'))
+        <div class="px-6 py-4 sm:block">
+          @auth
+            <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+          @else
+            <a href="{{ route('login') }}" type="button" class="btn btn-info text-white">Log
+              in</a>
 
-          @if (Route::has('register'))
-            <a href="{{ route('register') }}"
-              class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-          @endif
-        @endauth
-      </div>
-    @endif
-
-    <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-      <h1 style="color: #fff">Pasok</h1>
+            @if (Route::has('register'))
+              <a href="{{ route('register') }}" type="button" class="btn btn-info text-white ml-4 ">Register</a>
+            @endif
+          @endauth
+        </div>
+      @endif
     </div>
   </div>
-</body>
 
 </html>
