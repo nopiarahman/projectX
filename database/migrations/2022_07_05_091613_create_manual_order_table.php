@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('kelurahan',255);
             $table->string('kecamatan',255);
             $table->string('jenis',255);
-            $table->float('berat',255);
+            $table->string('berat',255);
             $table->string('status',100);
             $table->timestamps();
         });
