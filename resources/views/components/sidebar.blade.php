@@ -10,6 +10,20 @@
       {{-- Master Data --}}
       <li class="nav-item nav-category">MASTER DATA</li>
       <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#manualOrder" aria-expanded="false"
+          aria-controls="manualOrder">
+          <i class="menu-icon mdi mdi-human-greeting"></i>
+          <span class="menu-title">Manual Order</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="manualOrder">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ url('/manualorders/ongoing') }}">On-Going</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">Selesai</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#order" aria-expanded="false" aria-controls="order">
           <i class="menu-icon mdi mdi-human-greeting"></i>
           <span class="menu-title">Order</span>
@@ -43,8 +57,7 @@
         </li>
       @endcan
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#pelanggan" aria-expanded="false"
-          aria-controls="pelanggan">
+        <a class="nav-link" data-bs-toggle="collapse" href="#pelanggan" aria-expanded="false" aria-controls="pelanggan">
           <i class="menu-icon mdi mdi-human-handsup"></i>
           <span class="menu-title">Pelanggan</span>
           <i class="menu-arrow"></i>
@@ -67,8 +80,7 @@
       @role('keuangan|Super-Admin')
         <li class="nav-item nav-category">KEUANGAN</li>
         <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#penjualan" aria-expanded="false"
-            aria-controls="penjualan">
+          <a class="nav-link" data-bs-toggle="collapse" href="#penjualan" aria-expanded="false" aria-controls="penjualan">
             <i class="menu-icon mdi mdi-square-inc-cash"></i>
             <span class="menu-title">Penjualan</span>
             <i class="menu-arrow"></i>

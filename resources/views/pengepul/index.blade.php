@@ -35,21 +35,24 @@
             @csrf
             <div class="form-group ">
               <label for="exampleInputEmail3">Nama</label>
-              <input name="nama" type="text" class="form-control " id="exampleInputEmail3" placeholder="Nama" required>
+              <input name="nama" type="text" class="form-control " id="exampleInputEmail3" placeholder="Nama"
+                required>
             </div>
 
             <div class="form-group">
               <label for="exampleInputEmail3">Lokasi Map</label>
-              <input name="lokasi" type="text" class="form-control" id="exampleInputEmail3" placeholder="nomor Telepon">
+              <input name="lokasi" type="text" class="form-control" id="exampleInputEmail3"
+                placeholder="nomor Telepon">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail3">Alamat</label>
-              <input name="alamat" type="text" class="form-control" id="exampleInputEmail3" placeholder="nomor Telepon">
+              <input name="alamat" type="text" class="form-control" id="exampleInputEmail3"
+                placeholder="nomor Telepon">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail3">Nomor Telepon</label>
-              <input name="noHp" type="text" class="form-control" id="exampleInputEmail3" placeholder="nomor Telepon"
-                required>
+              <input name="noHp" type="text" class="form-control" id="exampleInputEmail3"
+                placeholder="nomor Telepon" required>
             </div>
             <button type="submit" class="btn btn-primary me-2">Simpan</button>
             <button class="btn btn-light">Batal</button>
@@ -142,7 +145,8 @@
             </div>
             <div class="form-group">
               <label for="exampleInputEmail3">Nomor Telepon</label>
-              <input name="noHp" type="text" class="form-control" id="noHPEdit" placeholder="nomor Telepon" required>
+              <input name="noHp" type="text" class="form-control" id="noHPEdit" placeholder="nomor Telepon"
+                required>
             </div>
 
             <button type="submit" class="btn btn-primary me-2">Edit</button>

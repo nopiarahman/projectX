@@ -29,7 +29,8 @@
 
 <body style="background-color: #F4F5F7">
   <div class="container-scroller">
-    <x-banner />
+    {{-- banner diatas --}}
+    {{-- <x-banner /> --}}
     <!-- navbar component -->
     <x-navbar nama="{{ auth()->user()->name }}" greetings="{{ greetings() }}" pesan="{{ pesan() }}" />
     <!-- partial -->

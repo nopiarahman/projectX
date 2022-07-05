@@ -1,9 +1,11 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BarangController;
-use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\LogistikController;
 use App\Http\Controllers\PengepulController;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\ManualOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +46,17 @@ Route::group(['middleware'=>['role:Super-Admin']],function(){
     Route::post('/pengepul',[ PengepulController::class,'store'])->name('pengepulSimpan');
     Route::patch('/pengepul/{id}',[ PengepulController::class,'update']);
     Route::delete('/pengepul/{id}',[ PengepulController::class,'destroy']);
+
+    /* Order */
+    Route::controller(ManualOrderController::class)->group(function () {
+        Route::get('/manualorders/ongoing', 'indexOnGoing');
+        Route::get('/manualorders/create', 'create');
+        Route::get('/manualorders/{id}', 'show');
+        Route::get('/manualorders/edit/{id}', 'edit');
+        Route::delete('/manualorders/{id}', 'destroy');
+        Route::post('/manualorders/update/{id}', 'update')->name('manualOrdersUpdate');
+        Route::post('/manualorders', 'store')->name('manualOrdersSimpan');
+    });
 });
 Route::group(['middleware'=>['role:logistik']],function(){
 
