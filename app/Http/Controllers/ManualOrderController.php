@@ -30,7 +30,7 @@ class ManualOrderController extends Controller
                 'kelurahan'=> 'required',
                 'kecamatan'=> 'required',
                 'jenis'=> 'required',
-                'berat'=> 'required|integer',
+                'berat'=> 'required',
                 ]);
             $requestData=$request->all();
             $manualOrders = new ManualOrder();
