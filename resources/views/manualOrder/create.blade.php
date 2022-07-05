@@ -70,7 +70,7 @@
             </div>
             <div class="form-group">
               <label for="exampleInputEmail3">Berat</label>
-              <input name="berat" type="number" class="form-control" id="exampleInputEmail3"
+              <input name="berat" type="text" class="form-control" id="exampleInputEmail3"
                 placeholder="Perkiraan Berat barang" required>
             </div>
 
